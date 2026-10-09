@@ -24,67 +24,13 @@ export default function ProfilePage() {
 
     const user = session?.user;
 
-    const [name, setName] = useState("");
-    const [updating, setUpdating] = useState(false);
     const [signingOut, setSigningOut] = useState(false);
-
-    useEffect(() => {
-        if (user) {
-            setName(user.name || "");
-        }
-    }, [user?.name]);
 
     useEffect(() => {
         if (!isPending && !user) {
             router.replace("/signin");
         }
     }, [isPending, user, router]);
-
-    const handleUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-
-        if (!user || updating) return;
-
-        const updatedName = name.trim();
-
-        if (!updatedName) {
-            toast.error("নাম লিখুন", toastOptions);
-            return;
-        }
-
-        if (updatedName === user.name) {
-            toast.info("নামে কোনো পরিবর্তন করা হয়নি", toastOptions);
-            return;
-        }
-
-        setUpdating(true);
-        console.log("[Profile] Updating user name:", updatedName);
-
-        try {
-            const { data, error } = await authClient.updateUser({
-                name: updatedName,
-            });
-
-            if (error) {
-                console.error("[Profile] Update failed:", error);
-                toast.error(
-                    error.message || "প্রোফাইল আপডেট করা যায়নি",
-                    toastOptions
-                );
-                return;
-            }
-
-            console.log("[Profile] Update successful:", data);
-
-            toast.success("প্রোফাইল সফলভাবে আপডেট হয়েছে", toastOptions);
-            router.refresh();
-        } catch (error) {
-            console.error("[Profile] Unexpected error:", error);
-            toast.error("প্রোফাইল আপডেট করতে সমস্যা হয়েছে", toastOptions);
-        } finally {
-            setUpdating(false);
-        }
-    };
 
     const handleSignOut = async () => {
         if (signingOut) return;
@@ -202,38 +148,28 @@ export default function ProfilePage() {
                 <section className="rounded-xl border border-[#e0e8e0] bg-[#fbfdfb] px-4 py-5 sm:px-[15px] sm:py-[18px]">
                     <h2 className="text-sm font-bold text-[#263129]">তথ্য</h2>
 
-                    <form
-                        onSubmit={handleUpdate}
-                        className="mt-7 px-1.5 pb-3"
-                    >
-                        <label
-                            htmlFor="profile-name"
-                            className="mb-1.5 block text-xs font-medium text-[#263129]"
-                        >
-                            নাম
-                        </label>
+                    <div className="mt-5 space-y-3 px-1.5 pb-1">
+                        <div>
+                            <p className="text-xs text-[#68736a]">নাম</p>
+                            <p className="mt-0.5 text-sm font-semibold text-[#263129]">
+                                {user.name || "ব্যবহারকারী"}
+                            </p>
+                        </div>
 
-                        <input
-                            id="profile-name"
-                            name="name"
-                            type="text"
-                            autoComplete="name"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            placeholder="আপনার নাম লিখুন"
-                            required
-                            disabled={updating}
-                            className="h-[31px] w-full rounded-[7px] border border-[#e1e9e1] bg-transparent px-3 text-xs text-[#263129] outline-none transition placeholder:text-gray-400 focus:border-green-700 focus:ring-1 focus:ring-green-100 disabled:opacity-60"
-                        />
+                        <div>
+                            <p className="text-xs text-[#68736a]">ইমেইল</p>
+                            <p className="mt-0.5 text-sm font-semibold text-[#263129]">
+                                {user.email}
+                            </p>
+                        </div>
 
-                        <button
-                            type="submit"
-                            disabled={updating || !name.trim()}
-                            className="mt-3 flex h-[32px] w-full items-center justify-center rounded-[7px] bg-[#07883f] px-4 text-xs font-semibold text-white shadow-[0_3px_0_#066b34,0_4px_6px_rgba(0,0,0,0.12)] transition hover:bg-[#067536] active:translate-y-0.5 active:shadow-none disabled:cursor-not-allowed disabled:opacity-60"
+                        <Link
+                            href="/profile/update"
+                            className="mt-4 flex h-[32px] w-full items-center justify-center rounded-[7px] bg-[#07883f] px-4 text-xs font-semibold text-white shadow-[0_3px_0_#066b34,0_4px_6px_rgba(0,0,0,0.12)] transition hover:bg-[#067536] active:translate-y-0.5 active:shadow-none"
                         >
-                            {updating ? "আপডেট হচ্ছে..." : "আপডেট"}
-                        </button>
-                    </form>
+                            আপডেট
+                        </Link>
+                    </div>
                 </section>
             </div>
         </main>

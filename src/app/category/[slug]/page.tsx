@@ -16,6 +16,18 @@ const formatNumber = (value: number) =>
     maximumFractionDigits: 1,
   }).format(value);
 
+const parseBengaliNumber = (value: number | string): number => {
+  if (typeof value === "number") return value;
+  if (!value) return 0;
+  const bnDigits: Record<string, string> = {
+    "০": "0", "১": "1", "২": "2", "৩": "3", "৪": "4",
+    "৫": "5", "৬": "6", "৭": "7", "৮": "8", "৯": "9",
+  };
+  const normalized = String(value).replace(/[০-৯]/g, (d) => bnDigits[d] || d);
+  const parsed = parseFloat(normalized.replace(/[^0-9.-]/g, ""));
+  return isNaN(parsed) ? 0 : parsed;
+};
+
 const getUnit = (unit: string) => {
   const units: Record<string, string> = {
     kg: "কেজি",
@@ -228,11 +240,11 @@ export default function CategoryPage() {
     const result = [...products];
 
     if (sort === "price-asc") {
-      result.sort((a, b) => a.today - b.today);
+      result.sort((a, b) => parseBengaliNumber(a.today) - parseBengaliNumber(b.today));
     }
 
     if (sort === "price-desc") {
-      result.sort((a, b) => b.today - a.today);
+      result.sort((a, b) => parseBengaliNumber(b.today) - parseBengaliNumber(a.today));
     }
 
     return result;
@@ -268,17 +280,34 @@ export default function CategoryPage() {
               সাজান
             </label>
 
-            <select
-              id="category-sort"
-              value={sort}
-              onChange={(e) => setSort(e.target.value as SortOption)}
-              disabled={loading || products.length === 0}
-              className="h-9 rounded-lg border border-[#d7dfd7] bg-transparent px-3 text-sm text-[#263129] outline-none focus:border-green-700 disabled:opacity-60"
-            >
-              <option value="default">ডিফল্ট</option>
-              <option value="price-asc">দাম: কম থেকে বেশি</option>
-              <option value="price-desc">দাম: বেশি থেকে কম</option>
-            </select>
+            <div className="relative inline-flex items-center">
+              <select
+                id="category-sort"
+                value={sort}
+                onChange={(e) => setSort(e.target.value as SortOption)}
+                disabled={loading || products.length === 0}
+                className="h-9 appearance-none rounded-lg border border-[#d7dfd7] bg-transparent pl-3 pr-8 text-sm text-[#263129] outline-none focus:border-green-700 disabled:opacity-60 cursor-pointer"
+              >
+                <option value="default">ডিফল্ট</option>
+                <option value="price-asc">দাম: কম থেকে বেশি</option>
+                <option value="price-desc">দাম: বেশি থেকে কম</option>
+              </select>
+
+              <svg
+                className="pointer-events-none absolute right-2.5 h-3 w-3 text-gray-500"
+                viewBox="0 0 12 12"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="m3 4.5 3 3 3-3"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
           </section>
 
           <p className="mb-4 mt-4 text-sm leading-5 text-[#68736a]">
@@ -324,7 +353,7 @@ export default function CategoryPage() {
                 href="/"
                 className="mt-5 inline-flex rounded-lg bg-green-700 px-5 py-3 text-sm font-semibold text-white hover:bg-green-800"
               >
-                হোম পেজে যান
+                হোম পেজে ফিরে যান
               </Link>
             </div>
           )}

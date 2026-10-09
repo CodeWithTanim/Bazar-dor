@@ -71,7 +71,7 @@ export default function SignUpPage() {
             console.log("[Signup] Signup request succeeded:", data);
 
             toast.success("অ্যাকাউন্ট তৈরি হয়েছে", toastOptions);
-            router.push("/");
+            router.push("/signin");
             router.refresh();
         } catch (error) {
             console.error("[Signup] Unexpected error:", error);
