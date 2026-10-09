@@ -2,7 +2,7 @@
 
 A modern, responsive web application for tracking daily essential commodity prices across major markets in Bangladesh. BazarDor helps users explore current prices, compare market rates, and monitor daily price changes through a clean interface with Bengali localization.
 
-**Live Demo:** [BazarDor](https://bazardor.vercel.app)  
+**Live Demo:** [BazarDor](https://bazardor-lemon.vercel.app/)  
 **GitHub Repository:** [CodeWithTanim/bazar-dor](https://github.com/CodeWithTanim/bazar-dor)
 
 ## Technologies Used
