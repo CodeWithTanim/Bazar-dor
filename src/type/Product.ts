@@ -1,4 +1,6 @@
-export interface Product {
+import { TMarket } from "./Market";
+
+export type TProduct = {
     id: number;
     slug: string;
     nameBn: string;
@@ -15,10 +17,5 @@ export interface Product {
         dir: "up" | "down" | "flat";
         pct: number;
     };
-    markets: {
-        market: string;
-        division: string;
-        min: number;
-        max: number;
-    }[];
-}
+    markets: TMarket[];
+};

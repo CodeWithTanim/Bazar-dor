@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState } from "react";
@@ -64,7 +63,7 @@ export default function SignUpPage() {
                 console.error("[Signup] Failed:", error);
                 toast.error(
                     error.message || "সাইন আপ করতে সমস্যা হয়েছে",
-                    toastOptions
+                    toastOptions,
                 );
                 return;
             }
@@ -99,7 +98,7 @@ export default function SignUpPage() {
 
                 toast.error(
                     error.message || "সোশ্যাল সাইন আপ করতে সমস্যা হয়েছে",
-                    toastOptions
+                    toastOptions,
                 );
 
                 setSocialLoading("");
@@ -119,9 +118,7 @@ export default function SignUpPage() {
     const inputClass =
         "h-9 w-full rounded-[7px] border border-[#e1e9e1] bg-transparent px-3 text-sm text-[#263129] outline-none transition placeholder:text-gray-400 focus:border-green-700 focus:ring-1 focus:ring-green-100 disabled:opacity-60";
 
-    const labelClass =
-        "mb-1 block text-sm font-medium text-[#263129]";
-
+    const labelClass = "mb-1 block text-sm font-medium text-[#263129]";
 
     return (
         <main className="flex min-h-[calc(100vh-226px)] items-start justify-center bg-[#f0f5f0] px-4 pb-16 pt-8">
@@ -225,9 +222,7 @@ export default function SignUpPage() {
                             disabled={isBusy}
                             className="flex h-10 w-full items-center justify-center rounded-lg bg-[#07883f] px-4 text-sm font-semibold text-white shadow-[0_3px_0_#066b34,0_4px_6px_rgba(0,0,0,0.12)] transition hover:bg-[#067536] active:translate-y-0.5 active:shadow-none disabled:cursor-not-allowed disabled:opacity-60"
                         >
-                            {loading
-                                ? "অ্যাকাউন্ট তৈরি হচ্ছে..."
-                                : "অ্যাকাউন্ট তৈরি করুন"}
+                            {loading ? "অ্যাকাউন্ট তৈরি হচ্ছে..." : "অ্যাকাউন্ট তৈরি করুন"}
                         </button>
                     </form>
 
@@ -305,5 +300,4 @@ export default function SignUpPage() {
             </div>
         </main>
     );
-
 }

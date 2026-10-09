@@ -1,4 +1,3 @@
-
 import { INavLink } from "@/type/NavLinks";
 import Link from "next/link";
 import React from "react";

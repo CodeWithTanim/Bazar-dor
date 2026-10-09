@@ -1,5 +1,4 @@
-
-import { Product } from '@/type/Product';
+import { TProduct } from '@/type/Product';
 import Link from 'next/link';
 import React from 'react';
 import MarqueeText from 'react-marquee-text';
@@ -16,7 +15,7 @@ const Marquee = async () => {
     }
 
     const data = await res.json();
-    const products: Product[] = data;
+    const products: TProduct[] = data;
 
     const formatPrice = (price: number) =>
         new Intl.NumberFormat('bn-BD').format(price);

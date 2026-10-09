@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState } from "react";
@@ -50,7 +49,7 @@ export default function SignInPage() {
         console.error("[Signin] Failed:", error);
         toast.error(
           error.message || "সাইন ইন করতে সমস্যা হয়েছে",
-          toastOptions
+          toastOptions,
         );
         return;
       }
@@ -85,7 +84,7 @@ export default function SignInPage() {
 
         toast.error(
           error.message || "সোশ্যাল সাইন ইন করতে সমস্যা হয়েছে",
-          toastOptions
+          toastOptions,
         );
 
         setSocialLoading("");
@@ -105,8 +104,7 @@ export default function SignInPage() {
   const inputClass =
     "h-10 w-full rounded-lg border border-[#e1e9e1] bg-transparent px-3 text-sm text-[#263129] outline-none transition placeholder:text-[#737b74] focus:border-green-700 focus:ring-1 focus:ring-green-100 disabled:opacity-60";
 
-  const labelClass =
-    "mb-1.5 block text-sm font-medium text-[#263129]";
+  const labelClass = "mb-1.5 block text-sm font-medium text-[#263129]";
 
   return (
     <main className="flex min-h-[calc(100vh-226px)] items-start justify-center bg-[#f0f5f0] px-4 pb-16 pt-8">

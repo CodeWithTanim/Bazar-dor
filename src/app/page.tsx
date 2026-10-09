@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import heroImage from "../../public/bazar-hero.png";
-import { Product } from "@/type/Product";
+import { TProduct } from "@/type/Product";
 
 
 const API_URL = "https://api.api-store.workers.dev/api/bazardor/products";
@@ -26,7 +26,7 @@ const getUnit = (unit: string) => {
   return units[unit.toLowerCase()] || unit;
 };
 
-const ProductCard = ({ product }: { product: Product }) => {
+const ProductCard = ({ product }: { product: TProduct }) => {
   const isUp = product.change.dir === "up";
   const isDown = product.change.dir === "down";
 
@@ -84,7 +84,7 @@ const ProductSection = ({
   subtitle,
 }: {
   title: string;
-  products: Product[];
+  products: TProduct[];
   type: "up" | "down" | "all";
   subtitle?: string;
 }) => {
@@ -134,7 +134,7 @@ export default async function Home() {
     throw new Error("Failed to fetch products");
   }
 
-  const data: Product[] = await res.json();
+  const data: TProduct[] = await res.json();
 
   const products = data;
 
