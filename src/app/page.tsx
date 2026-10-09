@@ -1,8 +1,50 @@
 import Image from "next/image";
+import heroImage from "../../public/bazar-hero.png";
 
 export default function Home() {
-  return <div>
-    This is HomePage
-  Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa nihil error quia in quod a magnam, debitis ratione velit totam temporibus dolores voluptatem laborum molestiae, voluptas distinctio quis accusantium asperiores itaque. Omnis optio distinctio impedit non, assumenda praesentium! Perferendis dignissimos ipsam expedita nam veritatis, in repellendus magnam ut laboriosam quo numquam eum doloremque velit nostrum quas magni ea dolore explicabo exercitationem, quod rem molestias cum quam vero! Quidem sapiente, eos sunt, laboriosam quisquam praesentium repellendus totam porro nulla in fuga odit qui quibusdam architecto eligendi! Eaque beatae nemo repudiandae unde dicta. Rem placeat aliquam minima unde iure voluptates dolorem magni fugit exercitationem odio voluptatum nisi ipsum sunt, laboriosam tempore pariatur, fugiat non. Atque ad facere ex aliquid! Natus pariatur ullam voluptatibus incidunt! Laboriosam id odit debitis possimus facilis vel quasi culpa voluptatum iure error, quod praesentium pariatur corrupti quibusdam velit sunt? Suscipit optio iusto nemo expedita sapiente molestiae facilis? Saepe ut, in non asperiores sed laudantium ipsum vero temporibus modi laborum sint iusto dignissimos nostrum illo aperiam aliquam delectus beatae corrupti quam aspernatur ad! Accusamus rerum minima ex nostrum aut itaque repellendus dicta consequuntur alias voluptatem! Beatae incidunt ab doloribus porro dicta! Ratione ipsa, amet quae quas vitae, et asperiores nesciunt nemo doloremque possimus quasi nostrum accusantium autem. Delectus aliquid optio quas labore ea inventore officiis quod porro, doloribus aspernatur blanditiis? Qui consequuntur adipisci dolores odit nemo cupiditate rem a assumenda, minus error unde consequatur libero illum voluptas deserunt tempora facilis aliquid, repellat fugit iste! Sit nobis nostrum expedita totam ratione quam neque, vel omnis vero aliquam sequi fugiat voluptatum illum odio consequatur doloremque nesciunt at deserunt illo eligendi porro, vitae quos quod? Pariatur natus labore est mollitia dolorem ipsa earum repellendus? Dolore quae recusandae modi veniam quibusdam. Perspiciatis, maiores? Repellendus placeat consequuntur itaque officiis quas corporis et, facilis quisquam exercitationem optio repellat provident sit non, quidem magnam tempore autem mollitia consequatur repudiandae, magni nesciunt eveniet! Dignissimos deserunt quae excepturi facilis quia! Nesciunt provident necessitatibus perferendis alias, recusandae eos unde facere exercitationem vero nulla architecto. Molestiae dolores culpa itaque necessitatibus fugit veritatis veniam, placeat ullam architecto vitae dicta saepe atque magnam ea cum mollitia, reiciendis consequatur voluptatum assumenda repellendus explicabo doloremque. Natus animi ea perspiciatis omnis vel odio repudiandae enim ullam. Exercitationem, unde. Exercitationem, voluptates? Magni totam perspiciatis et labore assumenda. Possimus voluptate modi hic quas, inventore nisi alias porro id eveniet. Asperiores perspiciatis dolorem ut, nihil accusantium modi maxime incidunt ipsa vel nesciunt delectus. Nisi ex expedita, porro doloribus vitae deserunt dolor ut quae velit illum quis! Vero laudantium reiciendis placeat nostrum praesentium, quidem cumque ad fugit, minima rem nihil officiis eius consequatur quos quisquam perspiciatis provident! Vel magni consequatur recusandae consectetur voluptas, repellat illum, reprehenderit unde voluptate, consequuntur itaque officia obcaecati aliquid ipsam. Eaque facilis aliquid autem consequuntur numquam? Molestiae quisquam magnam adipisci accusamus tenetur id odio culpa alias nesciunt. Voluptatem, aliquam sed, doloremque repellendus tempore delectus nobis pariatur in magnam, fugit incidunt quia commodi? Qui optio nesciunt sit nisi nulla! Dolorem rerum eveniet animi ab quibusdam. Est?
-  </div>;
+  const date = new Date().toLocaleDateString("bn-BD", {
+    dateStyle: "full",
+  });
+
+  return (
+    <main className="min-h-screen bg-[#f0f5f0] px-4 py-[30px]">
+      <section className="mx-auto flex min-h-[289px] max-w-6xl flex-col items-center justify-between gap-8 rounded-[26px] border border-[#dce7dc] bg-[#fbfdfb] px-5 py-6 sm:px-8 md:flex-row md:gap-10 md:px-4 lg:px-4">
+        {/* Left Content */}
+        <div className="w-full md:flex-1">
+          <span className="inline-flex rounded-full bg-[#e1f1e7] px-3 py-1 text-sm font-medium text-green-700">
+            {date}
+          </span>
+
+          <h1 className="mt-3 text-3xl font-extrabold leading-tight tracking-tight text-[#1c2920] sm:text-4xl">
+            আজকের বাজারের দাম এক নজরে
+          </h1>
+
+          <p className="mt-5 max-w-xl text-base leading-6 text-[#6b756d]">
+            চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম ও মসলার দাম , বাজারভিত্তিক
+            বিশ্লেষণ, গড়, সর্বনিম্ন-সর্বাধিক এবং দামের পরিবর্তন এক জায়গায়।
+          </p>
+
+          <a
+            href="#সব-পণ্য"
+            className="mt-7 inline-flex h-[42px] items-center justify-center rounded-lg bg-green-700 px-6 text-sm font-semibold text-white shadow-[0_3px_4px_rgba(0,0,0,0.2)] transition-colors hover:bg-green-800"
+          >
+            সব পণ্য দেখুন
+          </a>
+        </div>
+
+        {/* Right Hero Image */}
+        <div className="flex w-full items-center justify-center md:w-[300px] md:shrink-0">
+          <Image
+            src={heroImage}
+            alt="বাজারের তাজা পণ্য"
+            priority
+            className="h-auto w-[220px] object-contain sm:w-[250px] md:w-[250px]"
+          />
+        </div>
+      </section>
+
+      {/* Products Section */}
+      <section>{/* product */}</section>
+    </main>
+  );
 }
