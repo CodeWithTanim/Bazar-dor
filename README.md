@@ -127,8 +127,3 @@ bazar-dor/
 └── README.md
 ```
 
----
-
-## 📄 License
-
-This project is built as an educational submission for programming assessments. All rights reserved.
